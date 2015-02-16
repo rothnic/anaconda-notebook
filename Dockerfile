@@ -15,7 +15,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN /tmp/install.sh
 
 # Perform any cleanup of the install as needed
-RUN apt-get --purge autoremove wget
+RUN apt-get --purge -y autoremove wget
 
 # Copy notebook config into ipython directory
 USER root

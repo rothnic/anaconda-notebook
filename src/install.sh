@@ -18,7 +18,7 @@ PIP2=$PY2PATH/pip
 useradd --create-home --home-dir $HOME --shell /bin/bash condauser
 
 # Download Anaconda
-if [! -f /tmp/Anaconda.sh];
+if [ ! -f /tmp/Anaconda.sh ];
 then
 	# Normal build will download Anaconda directly to user's directory
 	wget http://repo.continuum.io/anaconda3/Anaconda3-2.1.0-Linux-x86_64.sh -O $HOME/Anaconda.sh
