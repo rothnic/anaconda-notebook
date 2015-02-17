@@ -8,8 +8,15 @@ ADD src/ /tmp
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	apt-get upgrade -y && \
-	apt-get install -y git wget build-essential python-dev && \
-	apt-get clean
+	apt-get install -y git \
+		wget \
+		build-essential \
+		python-dev \
+		libsm6 \
+		libxrender1 \
+		libXext6 \
+		libfontconfig1 \
+	&& apt-get clean
 
 # Run all python installs
 RUN /tmp/install.sh
