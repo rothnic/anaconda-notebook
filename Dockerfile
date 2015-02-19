@@ -1,4 +1,4 @@
-FROM phusion/baseimage:latest
+FROM debian:jessie
 MAINTAINER Nick Roth "nlr06886@gmail.com"
 
 # Link in our build files to the docker image
@@ -12,24 +12,17 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 		wget \
 		build-essential \
 		python-dev \
-		libsm6 \
-		libxrender1 \
-		libXext6 \
-		libfontconfig1 \
+		qt5-default \
 	&& apt-get clean
 
 # Run all python installs
-RUN /tmp/install.sh
-
 # Perform any cleanup of the install as needed
-RUN apt-get --purge -y autoremove wget
-
 # Copy notebook config into ipython directory
-USER root
-ADD ./src/ipython_notebook_config.py /home/condauser/.ipython/profile_default/
-
 # Make sure our user owns the directory
-RUN chown condauser:condauser /home/condauser -R
+RUN /tmp/install.sh && \
+	apt-get --purge -y autoremove wget && \
+	cp /tmp/ipython_notebook_config.py /home/condauser/.ipython/profile_default/ && \
+	chown condauser:condauser /home/condauser -R
 
 # Set persistent environment variables for python3 and python2 
 ENV PY2PATH=/home/condauser/anaconda3/envs/python2/bin
@@ -38,8 +31,8 @@ ENV PY3PATH=/home/condauser/anaconda3/bin
 # Install the python2 ipython kernel
 RUN $PY2PATH/python $PY2PATH/ipython kernelspec install-self
 
+# Setup our environment for running the ipython notebook
 EXPOSE 8888
-
 USER condauser
 ENV HOME=/home/condauser
 ENV SHELL=/bin/bash

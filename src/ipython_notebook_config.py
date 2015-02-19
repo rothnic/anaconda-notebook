@@ -9,7 +9,7 @@ c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
 
 # Fix issue with using matplot lib via headless machine: https://github.com/conda/conda/issues/1051
-c.IPKernelApp.matplotlib = u'inline'
+c.IPKernelApp.matplotlib = 'inline'
 
 # Whether to trust or not X-Scheme/X-Forwarded-Proto and X-Real-Ip/X-Forwarded-
 # For headerssent by the upstream reverse proxy. Necessary if the proxy handles
