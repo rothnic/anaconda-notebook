@@ -38,6 +38,7 @@ export PATH=\"$PY3PATH:\$PATH\"" >> $BASH_RC
 
 # python 3 ipython install
 $CONDA3 install --yes jsonschema
+$CONDA3 update --yes matplotlib
 $PIP3 install git+https://github.com/ipython/ipython.git@3.x
 $PIP3 install terminado mistune
 

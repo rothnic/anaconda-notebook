@@ -10,9 +10,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get upgrade -y && \
 	apt-get install -y git \
 		wget \
+		nano \
 		build-essential \
 		python-dev \
-		qt5-default \
 	&& apt-get clean
 
 # Run all python installs
@@ -22,6 +22,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN /tmp/install.sh && \
 	apt-get --purge -y autoremove wget && \
 	cp /tmp/ipython_notebook_config.py /home/condauser/.ipython/profile_default/ && \
+	cp /tmp/matplotlib_nb_init.py /home/condauser/.ipython/profile_default/startup && \
 	chown condauser:condauser /home/condauser -R
 
 # Set persistent environment variables for python3 and python2 
