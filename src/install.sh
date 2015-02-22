@@ -29,17 +29,22 @@ fi
 
 # Install and remove file
 bash $HOME/Anaconda.sh -b
-rm -rf $HOME/Anaconda.sh
 
 # make anaconda's python default for our user
 echo "
 # added by Anaconda-Notebook
 export PATH=\"$PY3PATH:\$PATH\"" >> $BASH_RC
 
+# clone ipython into temp directory
+mkdir $HOME/temp
+cd $HOME/temp
+git clone --recursive -b 3.x https://github.com/ipython/ipython.git ipython
+chmod -R +rX $HOME/temp/ipython
+
 # python 3 ipython install
 $CONDA3 install --yes jsonschema
 $CONDA3 update --yes matplotlib
-$PIP3 install git+https://github.com/ipython/ipython.git@3.x
+$PIP3 install file://$HOME/temp/ipython
 $PIP3 install terminado mistune
 
 # python 2 environment
@@ -47,10 +52,15 @@ $CONDA3 create --yes -n python2 python=2 pip pyzmq
 
 # python 2 ipython install
 $CONDA2 install --yes jsonschema
-$PIP2 install git+https://github.com/ipython/ipython.git@3.x
+$PIP2 install file://$HOME/temp/ipython
 $PIP2 install terminado mistune
 
 # ipython setup
 $PY3PATH/ipython profile create default --ipython-dir $HOME/.ipython
 chown condauser:condauser $HOME/.ipython/profile_default/security -R
 mkdir $HOME/notebooks
+cp /tmp/notebooks $HOME/notebooks
+
+# cleanup
+rm -rf $HOME/Anaconda.sh
+rm -rf $HOME/temp

@@ -10,7 +10,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get upgrade -y && \
 	apt-get install -y git \
 		wget \
-		nano \
 		build-essential \
 		python-dev \
 	&& apt-get clean
