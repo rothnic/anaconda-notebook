@@ -59,7 +59,7 @@ $PIP2 install terminado mistune
 $PY3PATH/ipython profile create default --ipython-dir $HOME/.ipython
 chown condauser:condauser $HOME/.ipython/profile_default/security -R
 mkdir $HOME/notebooks
-cp /tmp/notebooks $HOME/notebooks
+cp -a /tmp/notebooks $HOME/notebooks
 
 # cleanup
 rm -rf $HOME/Anaconda.sh
