@@ -1,13 +1,7 @@
-Anaconda-Notebook
----
+# Anaconda-Notebook
 IPython 3 Notebook and Terminal + Anaconda
 
-<!-- TOC depth:2 withLinks:1 updateOnSave:1 -->
-	- [Overview](#overview)
-	- [Getting Started](#getting-started)
-	- [Anaconda Environment](#anaconda-environment)
-	- [Development](#development)
-<!-- /TOC -->
+#### [Screencast Demo](http://youtu.be/V2p8G6-bBKs)
 
 ## Overview
 A docker image with the intent to provide an IPython 3/Jupyter notebook and terminal access, similar to what is provided with [jupyter/demo](https://github.com/jupyter/docker-demo-images), except with a full Anaconda install, owned by the user. The benefits are that you can use conda or pip to quickly install new packages via the terminal.
@@ -16,8 +10,7 @@ A python 3 install is used, but has a python 2 IPython kernel that is tied to a 
 
 The goal is to provide a sandbox IPython environment with most of what you'd need, but still provide the capability to install things as needed.
 
-### [Screencast Demo](http://youtu.be/V2p8G6-bBKs)
-This shows running it on OSX via boot2docker, running the included sample notebook, then installing seaborn with Conda, then running a seaborn example.
+See the [demo](http://youtu.be/V2p8G6-bBKs), it shows running it on OSX via boot2docker, running the included sample notebook, then installing seaborn with Conda, then running a seaborn example.
 
 #### Included Python Packages
 See [Anaconda Package Documentation](http://docs.continuum.io/anaconda/pkg-docs.html)
@@ -71,7 +64,7 @@ Create your own Dockerfile and add the following to the top of the file:
 ```
 FROM rothnic/anaconda-notebook
 ```
-Next, just copy in your notebooks into `/home/condauser/notebooks`.
+Next, just copy in your notebooks into `/home/condauser/notebooks`, or apply whatever other changes you'd like.
 
 ### Building
 Either clone this repository, or extend it as mentioned above, then navigate to the directory where the Dockerfile exists, then enter the following command:
