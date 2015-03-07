@@ -36,9 +36,16 @@ docker pull rothnic/anaconda-notebook
 ```
 
 #### Running the Docker Image
+If using with [tmpnb](https://github.com/jupyter/tmpnb), see their readme for using this image. Otherwise, standalone use would be with:
 ```
-docker run --net=host -i -t rothnic/anaconda-notebook
+docker run -p 8888:8888 -i -t rothnic/anaconda-notebook
 ```
+**Overview of run options:**
+* (required) `-p 8888:8888` Publishes the container᾿s port or a range of ports to the docker host. If not used, the notebook container will not receive requests its port
+* `-i` Keeps STDIN open
+* `-t` Allocates a terminal, otherwise with just `-i` you get plain text output and can't `ctrl-c` to stop the run command
+
+Note: This run command could be modified for your purposes, see [docker run](https://docs.docker.com/reference/run/). For example, using `-d` will run the image detached, so that a terminal does not have to stay open.
 
 ## Anaconda Environment
 - The anaconda install is located at `/home/condauser/anaconda3`
