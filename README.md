@@ -44,6 +44,7 @@ docker run -p 8888:8888 -i -t rothnic/anaconda-notebook
 * (required) `-p 8888:8888` Publishes the container᾿s port or a range of ports to the docker host. If not used, the notebook container will not receive requests its port
 * `-i` Keeps STDIN open
 * `-t` Allocates a terminal, otherwise with just `-i` you get plain text output and can't `ctrl-c` to stop the run command
+* `-v <host directory>:<guest directory>` Mounts a host directory into the container. Use this to utilize your own local directory of ipython notebooks
 
 Note: This run command could be modified for your purposes, see [docker run](https://docs.docker.com/reference/run/). For example, using `-d` will run the image detached, so that a terminal does not have to stay open.
 
@@ -71,7 +72,13 @@ Create your own Dockerfile and add the following to the top of the file:
 ```
 FROM rothnic/anaconda-notebook
 ```
-Next, just copy in your notebooks into `/home/condauser/notebooks`, or apply whatever other changes you'd like.
+Next, just copy in your notebooks into `/home/condauser/notebooks`, or apply whatever other changes you'd like. However, if you only need to include your own notebooks, and no other changes are required, then try this complete run command, instead of making modifications to the dockerfile:
+
+```
+docker run -i -t -p 8888:8888 -v \
+<path to your ipython notebooks on host>:/home/condauser/notebooks rothnic/anaconda-notebook \
+/home/condauser/anaconda3/bin/ipython notebook
+```
 
 ### Building
 Either clone this repository, or extend it as mentioned above, then navigate to the directory where the Dockerfile exists, then enter the following command:
