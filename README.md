@@ -17,10 +17,7 @@ See [Anaconda Package Documentation](http://docs.continuum.io/anaconda/pkg-docs.
 
 #### Modifications to Standard Anaconda Install
 
-- IPython 3
-- jsonschema, terminado, mistune (ipython 3 requirement)
 - 'python2' environment
-- update matplotlib (avoids python 3 error with nbagg backend)
 - IPython Startup Script
 	- Sets matplotlib nbagg backend (bypasses qt dependencies), then sets matplotlib output mode to `inline`. This makes sure we always output to notebook by default.
 

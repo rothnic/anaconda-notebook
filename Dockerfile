@@ -11,7 +11,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get install -y git \
 		wget \
 		bzip2 \
-#		build-essential \
+		build-essential \
 #		python-dev \
 	&& apt-get clean
 
