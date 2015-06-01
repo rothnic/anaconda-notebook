@@ -12,7 +12,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 		wget \
 		bzip2 \
 		build-essential \
-#		python-dev \
+		python-dev \
+		gfortran \
 	&& apt-get clean
 
 # Create conda user, get anaconda by web or locally

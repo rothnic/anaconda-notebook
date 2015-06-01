@@ -10,5 +10,6 @@ then
 else
 	# If you predownload anaconda, or for testing the build it should be in /src, named Anaconda.sh
 	cp /tmp/Anaconda.sh $HOME/Anaconda.sh
-  chown condauser:condauser $HOME/Anaconda.sh
 fi
+
+chown condauser:condauser $HOME/Anaconda.sh

@@ -22,6 +22,9 @@ echo "
 # added by Anaconda-Notebook
 export PATH=\"$PY3PATH:\$PATH\"" >> $BASH_RC
 
+# additional packages to install
+$CONDA3 install --yes seaborn
+
 # python 2 environment
 $CONDA3 create --yes -n python2 python=2 pip ipython pyzmq
 
