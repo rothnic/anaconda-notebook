@@ -33,7 +33,20 @@ docker pull rothnic/anaconda-notebook
 ```
 
 #### Running the Docker Image
-If using with [tmpnb](https://github.com/jupyter/tmpnb), see their readme for using this image. Otherwise, standalone use would be with:
+If using with [tmpnb](https://github.com/jupyter/tmpnb), see their readme for using this image. Some example commands are provided below, but they may fall out of sync with tmpnb if it is updated, so be sure to check the project.
+
+```
+# create a bunch of unique keys to identify the workers
+export TOKEN=$( head -c 30 /dev/urandom | xxd -p )
+
+# run the proxy, detached
+docker run --net=host -d -e CONFIGPROXY_AUTH_TOKEN=$TOKEN --name=proxy jupyter/configurable-http-proxy --default-target http://127.0.0.1:9999
+
+# run the orchestrator, detached, using anaconda-notebook
+docker run --net=host -d -e CONFIGPROXY_AUTH_TOKEN=$TOKEN -v /var/run/docker.sock:/docker.sock --name=tmpnb jupyter/tmpnb python orchestrate.py --image='rothnic/anaconda-notebook' --command='/home/condauser/anaconda3/bin/ipython notebook --NotebookApp.base_url=/{base_path} --ip=0.0.0.0 --port {port}'
+```
+
+Otherwise, standalone use would be with:
 ```
 docker run -p 8888:8888 -i -t rothnic/anaconda-notebook
 ```
